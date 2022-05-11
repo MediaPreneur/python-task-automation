@@ -8,8 +8,8 @@ videoquality = "24"
 compression = "slow"
 
 title = "test"
-loadtitle = title + '.mov'
-savetitle = title + '.mp4'
+loadtitle = f'{title}.mov'
+savetitle = f'{title}.mp4'
 
 # modify these start and end times for your subclips
 cuts = [('00:00:02.949', '00:00:04.152'),

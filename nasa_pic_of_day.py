@@ -10,10 +10,10 @@ FILENAME = 'nasa_pic.png'
 def get_filename():
     username = pwd.getpwuid(os.getuid()).pw_name
     if platform.system()=="Linux":
-        directory = "/home/" + username + "/Downloads/"
+        directory = f"/home/{username}/Downloads/"
     elif platform.system()=="Darwin":
-        directory = "/Users/" + username + "/Downloads/"
-        
+        directory = f"/Users/{username}/Downloads/"
+
     return os.path.join(directory, FILENAME)
 
   
@@ -38,12 +38,12 @@ def download_pic_of_day():
        
 if __name__ == '__main__':
     download_pic_of_day()
-    
+
     filename = get_filename()
-    
+
     # set background
     if platform.system()=="Linux":
-        cmd = "gsettings set org.gnome.desktop.background picture-uri file:" + filename
+        cmd = f"gsettings set org.gnome.desktop.background picture-uri file:{filename}"
     elif platform.system()=="Darwin":
         cmd = "osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"" + filename +"\"'"
         # use absolute path to the image, and not a path that begins with a user path (~/Downloads/image.jpg)!

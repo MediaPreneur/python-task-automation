@@ -15,16 +15,16 @@ def block_websites():
         print("Block sites")
         with open(hosts_path, 'r+') as hostfile:
             hosts_content = hostfile.read()
-            for site in  sites_to_block:
+            for site in sites_to_block:
                 if site not in hosts_content:
-                   hostfile.write(redirect + ' ' + site + '\n')
+                    hostfile.write(f'{redirect} {site}' + '\n')
     else:
         print('Unblock sites')
         with open(hosts_path, 'r+') as hostfile:
             lines = hostfile.readlines()
             hostfile.seek(0)
             for line in lines:
-                if not any(site in line for site in sites_to_block):
+                if all(site not in line for site in sites_to_block):
                     hostfile.write(line)
             hostfile.truncate()
 
